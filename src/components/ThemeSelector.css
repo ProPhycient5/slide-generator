@@ -1,0 +1,109 @@
+.theme-selector-container {
+  margin-top: 18px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid rgba(0, 123, 255, 0.1);
+}
+
+.theme-label {
+  display: block;
+  margin-bottom: 12px;
+  color: #1F4E78;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.theme-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.theme-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.theme-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-option.selected {
+  border-color: #007bff;
+  background: rgba(0, 123, 255, 0.05);
+}
+
+.theme-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  width: 100%;
+}
+
+.gradient-preview {
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2px;
+}
+
+.color-boxes {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.color-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.2);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  cursor: help;
+}
+
+.theme-name {
+  font-size: 13px;
+  color: #444;
+  font-weight: 500;
+}
+
+/* Hover effects for swatches */
+.theme-option:hover .color-swatch {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .theme-options {
+    justify-content: center;
+  }
+  
+  .theme-option {
+    min-width: 90px;
+    padding: 8px;
+  }
+}

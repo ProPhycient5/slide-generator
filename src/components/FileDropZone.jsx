@@ -6,13 +6,25 @@ export default function FileDropZone({ onFileUpload, resetSignal = 0 }) {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) onFileUpload(file);
+    if (!file) return;
+    const name = String(file.name || "").toLowerCase();
+    if (!(name.endsWith('.xlsx') || name.endsWith('.xls'))) {
+      alert('Unsupported file type. Please upload an Excel file (.xls or .xlsx).');
+      return;
+    }
+    onFileUpload(file);
   };
 
   const handleDrop = (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
-    if (file) onFileUpload(file);
+    if (!file) return;
+    const name = String(file.name || "").toLowerCase();
+    if (!(name.endsWith('.xlsx') || name.endsWith('.xls'))) {
+      alert('Unsupported file type. Please drop an Excel file (.xls or .xlsx).');
+      return;
+    }
+    onFileUpload(file);
   };
 
   const handleDragOver = (event) => {
@@ -35,7 +47,7 @@ export default function FileDropZone({ onFileUpload, resetSignal = 0 }) {
       <input
         ref={inputRef}
         type="file"
-        accept=".xlsx"
+        accept=".xlsx,.xls"
         onChange={handleFileChange}
         style={{ display: "none" }}
       />

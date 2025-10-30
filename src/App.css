@@ -2,13 +2,46 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* center children horizontally, but we control vertical layout via main-content */
 
   padding: 24px;
   font-family: Inter, Arial, sans-serif;
-  background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #a5d1fd 0%, #ffffff 100%);
   color: #333;
+}
+
+.main-content {
+  /* take remaining space so footer can sit at the bottom (sticky feel) */
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.site-header {
+  width: 100%;
+  padding: 18px 0 6px 0;
+  box-sizing: border-box;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 6px 12px;
+}
+
+.phrase {
+  margin: 8px 0 0 0;
+  color: #4b5563;
+  font-size: 14px;
+  background: rgba(0,123,255,0.1);
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgb(38, 95, 156);
 }
 
 .dummy-div{
@@ -40,6 +73,30 @@ h1 {
   position: relative;
 }
 
+.site-footer {
+  width: 100%;
+  margin-top: 18px;
+  box-sizing: border-box;
+  padding: 12px 0;
+  /* background: linear-gradient(180deg, rgba(250,251,255,0.6), rgba(245,247,250,0.4)); */
+  border-top: 1px solid rgba(17,85,204,0.03);
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  color: #556;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .content-card { padding: 18px; border-radius: 12px; }
+  .header-inner h1 { font-size: 18px; }
+  .phrase { font-size: 13px; padding: 5px 8px; }
+  .table-wrapper { height: 220px; }
+}
+
 .filename {
   margin-top: 10px;
   color: #2e7d32;
@@ -48,7 +105,18 @@ h1 {
 
 .preview-section {
   margin-top: 20px;
+  width: 100%;
 }
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin: 16px 0;
+  width: 100%;
+}
+
+
 
 /* fixed-size table container with scrollbars when content overflows */
 .table-wrapper{
