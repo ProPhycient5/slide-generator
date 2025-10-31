@@ -1,7 +1,7 @@
 import PptxGenJS from "pptxgenjs";
 import { createGradientDataUrl } from './gradientUtils';
 
-export const generatePPT = async (excelData, theme, fileName) => {
+export const generatePPT = async (excelData, theme, fileName, bgDataUrl = null) => {
   if (!excelData.length) {
     throw new Error("No Excel data found!");
   }
@@ -11,19 +11,19 @@ export const generatePPT = async (excelData, theme, fileName) => {
   // global slide defaults
   pptx.layout = "LAYOUT_WIDE"; // 16:9
 
-  // Create background image for the selected theme
-  const bgDataUrl = createGradientDataUrl(theme.colors.gradient);
+  // If caller provided a background image (data URL), prefer that. Otherwise generate gradient image.
+  const resolvedBgDataUrl = bgDataUrl || createGradientDataUrl(theme.colors.gradient);
 
   excelData.forEach((row, index) => {
     const slide = pptx.addSlide();
 
-    // Add gradient background
-    if (bgDataUrl) {
+    // Add background image if available, otherwise fallback to solid color
+    if (resolvedBgDataUrl) {
       try {
-        slide.background = { data: bgDataUrl };
+        slide.background = { data: resolvedBgDataUrl };
       } catch (err) {
         console.warn('slide.background.data unsupported, using oversized image fallback', err);
-        slide.addImage({ data: bgDataUrl, x: -0.2, y: -0.2, w: 10.4, h: 5.825 });
+        slide.addImage({ data: resolvedBgDataUrl, x: -0.2, y: -0.2, w: 10.4, h: 5.825 });
       }
     } else {
       slide.background = { fill: 'solid', color: theme.colors.gradient.end };

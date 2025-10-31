@@ -1,4 +1,19 @@
 export const THEMES = {
+  'neutral': {
+    name: 'Neutral',
+    colors: {
+      title: '111827',
+      subtitle: '6B7280',
+      text: '111827',
+      bullet: '374151',
+      gradient: {
+        start: 'FFFFFF',
+        end: 'F3F4F6',
+        angle: 90,
+        opacity: 1
+      }
+    }
+  },
   'salad': {
     name: 'Salad',
     colors: {
